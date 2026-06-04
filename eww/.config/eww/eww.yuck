@@ -1,0 +1,104 @@
+(defwindow bar
+    :monitor 0
+    :stacking "fg"
+    :exclusive true
+    :geometry (geometry
+        :width "100%"
+        :anchor "top center"
+    )
+    (box
+        (box :class "left"
+            :space-evenly false
+            (workspaces)
+        )
+
+        (box :class "right"
+            :space-evenly false
+            :halign "end"
+
+            (item
+                (box :class "indicators"
+                    (eventbox
+                        :visible {idle-pid == ""}
+                        :class "urgency-low"
+                        :onclick "hypridle & disown"
+                        ""
+                    )
+                )
+                (box :class "systray"
+                    (systray :spacing 12 :icon-size 14)
+                )
+            )
+
+            (item "${language}")
+            (item "${bluetooth-state} ${bluetooth-charge} ${media-state}")
+            (item "${volume} ${mic}")
+            (item
+                :class "${
+                    EWW_BATTERY.BAT0.status == "Charging"
+                    ? (
+                        EWW_BATTERY.BAT0.capacity <= 20
+                            ? "urgency-low"
+                        : EWW_BATTERY.BAT0.capacity >= 80
+                            ? "urgency-alt"
+                            : ""
+                    ) : (
+                        EWW_BATTERY.BAT0.capacity <= 5
+                            ? "urgency-high"
+                        : EWW_BATTERY.BAT0.capacity <= 10
+                            ? "urgency-medium"
+                        : EWW_BATTERY.BAT0.capacity <= 20
+                            ? "urgency-low"
+                            : ""
+                    )
+                }"
+                { EWW_BATTERY.BAT0.status == "Charging"
+                    ? "  " : (conservation == "enabled" ? " " : " ") }
+                "${ EWW_BATTERY.BAT0.capacity }%"
+            )
+            (item "${date}")
+            (item "${time}")
+        )
+    )
+)
+
+(defwidget workspaces []
+    (box :class "workspaces"
+        ; Update listener
+        (label :text "${workspace_list}${workspace_current}" :visible false)
+
+        (for workspace in workspace_list
+            (eventbox
+                :onclick "hyprctl dispatch workspace ${workspace.id}"
+                :class "\
+                    entry \
+                    ${workspace.windows > 0 ? "occupied" : "empty"} \
+                    ${workspace.id == workspace_current ? "current" : ""} \
+                "
+                (label :text "${workspace.id}")
+            )
+        )
+    )
+)
+
+(defwidget item [?class]
+    (box
+        :class "item ${class}"
+        :space-evenly false
+        (children)
+    )
+)
+
+(deflisten workspace_list    :initial "[]" "~/.config/eww/scripts/workspace-list")
+(deflisten workspace_current :initial "1"  "~/.config/eww/scripts/workspace-current")
+
+(defpoll language         :interval "0.5s" "~/.config/eww/scripts/language")
+(defpoll bluetooth-state  :interval "1s"   "bt display-status")
+(defpoll bluetooth-charge :interval "1s"   "bt display-charge")
+(defpoll media-state      :interval "1s"   "player-info brief")
+(defpoll volume           :interval "0.5s" "volume-brightness display-volume")
+(defpoll mic              :interval "0.5s" "volume-brightness display-mic")
+(defpoll conservation     :interval "2s"   "conservation status")
+(defpoll date             :interval "30s"  "date +'%Y-%m-%d'")
+(defpoll time             :interval "1s"   "date +'%H:%M'")
+(defpoll idle-pid         :interval "1s"   "pgrep hypridle || echo ''")
