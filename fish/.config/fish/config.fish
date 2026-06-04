@@ -19,6 +19,7 @@ actbutton=#2D353B,#DBBC7F
 compactbutton=#D3C6AA,#2D353B
 "
 set -gx COLORTERM truecolor
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 #Keybinding
 alias vi="nvim"
