@@ -46,19 +46,19 @@ for _, filetype in ipairs(web_languages) do
 	end)
 end
 
-local textwidths = {
-	c = 80,
-	cpp = 100,
-	rust = 100,
-	typst = 80,
-	markdown = 80,
-	sql = 80,
-	lc3 = 80,
-}
+-- local textwidths = {
+-- 	c = 80,
+-- 	cpp = 100,
+-- 	rust = 100,
+-- 	typst = 80,
+-- 	markdown = 80,
+-- 	sql = 80,
+-- 	lc3 = 80,
+-- }
 
-for filetype, textwidth in pairs(textwidths) do
-	ft_config(filetype, function()
-		vim.bo.textwidth = textwidth
-		vim.opt.colorcolumn = tostring(textwidth)
-	end)
-end
+-- for filetype, textwidth in pairs(textwidths) do
+-- 	ft_config(filetype, function()
+-- 		vim.bo.textwidth = textwidth
+-- 		vim.opt.colorcolumn = tostring(textwidth)
+-- 	end)
+-- end
