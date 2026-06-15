@@ -33,7 +33,6 @@ return { -- Autocompletion
 			default = { "lsp", "path", "snippets", "buffer" },
 			per_filetype = {
 				lua = { inherit_defaults = true, "lazydev" },
-				lc3 = { inherit_defaults = true, "elk" },
 			},
 			providers = {
 				lazydev = {
@@ -45,7 +44,6 @@ return { -- Autocompletion
 					min_keyword_length = 5,
 					max_items = 5,
 				},
-				elk = { module = "elk.cmp" },
 			},
 		},
 

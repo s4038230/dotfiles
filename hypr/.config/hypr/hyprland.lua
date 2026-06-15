@@ -11,8 +11,6 @@ local fileManager = "dolphin"
 -- Setting up eww
 hl.on("hyprland.start", function()
 	hl.exec_cmd("eww daemon & eww open bar")
-	hl.exec_cmd("eval (ssh-agent -c)")
-	hl.exec_cmd("ssh-add ~/.ssh/github_s4038230_auth_id_ed25519")
 end)
 
 -- Making the GPU can share task with each other

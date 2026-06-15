@@ -24,7 +24,6 @@ return {
 		require("nvim-treesitter").install({
 			"zig",
 			"rust",
-			"lc3",
 			"cpp",
 			"c",
 
