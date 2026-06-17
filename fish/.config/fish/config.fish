@@ -1,9 +1,13 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
+# Setting editor as neovim
 set -gx EDITOR nvim
 
-# # Everforest-dark-medium theme for nmtui
-# set -gx NEWT_COLORS ""
+# Setting service for the git user everytime boots up
+set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+
+
+# # Everforest-dark-medium theme for nmtui set -gx NEWT_COLORS ""
 # root=,#232A2E
 # window=#D3C6AA,#2D353B
 # border=#9DA9A0,#2D353B
