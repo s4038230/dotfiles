@@ -55,3 +55,6 @@ alias gd="cd ~/Downloads/"
 
 #Launcing XAMPP
 alias xampp="sudo /opt/lampp/lampp"
+
+#Open web view
+alias o="open"
