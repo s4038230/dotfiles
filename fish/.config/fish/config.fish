@@ -20,6 +20,9 @@ set -gx EDITOR nvim
 # set -gx COLORTERM truecolor
 # set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+#Adding ssh
+alias add-user="eval (ssh-add -c) && cd ~/.ssh/"
+
 #Keybinding
 alias vi="nvim"
 alias n="nvim"
