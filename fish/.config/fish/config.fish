@@ -49,3 +49,6 @@ mise activate fish | source
 alias gw="cd ~/workspace/"
 alias gs="cd ~/.config/"
 alias gd="cd ~/Downloads/"
+
+#Launcing XAMPP
+alias xampp="sudo /opt/lampp/lampp"
