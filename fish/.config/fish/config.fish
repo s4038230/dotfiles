@@ -30,7 +30,7 @@ alias add-user="eval (ssh-add -c) && cd ~/.ssh/"
 #Keybinding
 alias vi="nvim"
 alias n="nvim"
-alias n .="n."
+alias n.="nvim ."
 alias l="eza --group-directories-first --icons"
 alias cat="bat -p"
 
